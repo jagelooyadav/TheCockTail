@@ -26,6 +26,11 @@
 		16B388FA27C6B1F10066F13C /* DrinkApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388F927C6B1F10066F13C /* DrinkApiService.swift */; };
 		16B388FC27C6BC9F0066F13C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388FB27C6BC9F0066F13C /* NetworkManager.swift */; };
 		16B388FE27C6DAC50066F13C /* ObservableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388FD27C6DAC50066F13C /* ObservableTextField.swift */; };
+		16B3890127C6E6150066F13C /* ImageURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388FF27C6E6150066F13C /* ImageURLProtocol.swift */; };
+		16B3890227C6E6150066F13C /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890027C6E6150066F13C /* ImageCache.swift */; };
+		16B3890427C6E9280066F13C /* ItemCardCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890327C6E9280066F13C /* ItemCardCollectionCell.swift */; };
+		16B3890727C6EC190066F13C /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890627C6EC190066F13C /* UIColor+App.swift */; };
+		16B3890927C6EECD0066F13C /* ItemCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890827C6EECD0066F13C /* ItemCardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +74,11 @@
 		16B388F927C6B1F10066F13C /* DrinkApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkApiService.swift; sourceTree = "<group>"; };
 		16B388FB27C6BC9F0066F13C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		16B388FD27C6DAC50066F13C /* ObservableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableTextField.swift; sourceTree = "<group>"; };
+		16B388FF27C6E6150066F13C /* ImageURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageURLProtocol.swift; sourceTree = "<group>"; };
+		16B3890027C6E6150066F13C /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		16B3890327C6E9280066F13C /* ItemCardCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardCollectionCell.swift; sourceTree = "<group>"; };
+		16B3890627C6EC190066F13C /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
+		16B3890827C6EECD0066F13C /* ItemCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +129,7 @@
 		16B388B227C668480066F13C /* TheCockTail */ = {
 			isa = PBXGroup;
 			children = (
+				16B3890527C6EC080066F13C /* Utils */,
 				16B388F427C6A8770066F13C /* Models */,
 				16B388E827C677D50066F13C /* Views */,
 				16B388E727C6755C0066F13C /* ViewModels */,
@@ -156,6 +167,7 @@
 			children = (
 				16B388E527C675530066F13C /* HomeViewModel.swift */,
 				16B388F127C696C00066F13C /* ScreenHeaderViewModel.swift */,
+				16B3890827C6EECD0066F13C /* ItemCardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -168,6 +180,7 @@
 				16B388EB27C67B3D0066F13C /* UIView+Extension.swift */,
 				16B388ED27C67C6C0066F13C /* RoundedSearchTextField.swift */,
 				16B388FD27C6DAC50066F13C /* ObservableTextField.swift */,
+				16B3890327C6E9280066F13C /* ItemCardCollectionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,10 +196,20 @@
 		16B388F827C6B1B80066F13C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				16B3890027C6E6150066F13C /* ImageCache.swift */,
+				16B388FF27C6E6150066F13C /* ImageURLProtocol.swift */,
 				16B388F927C6B1F10066F13C /* DrinkApiService.swift */,
 				16B388FB27C6BC9F0066F13C /* NetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		16B3890527C6EC080066F13C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				16B3890627C6EC190066F13C /* UIColor+App.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +348,10 @@
 				16B388FA27C6B1F10066F13C /* DrinkApiService.swift in Sources */,
 				16B388B827C668480066F13C /* HomeViewController.swift in Sources */,
 				16B388B427C668480066F13C /* AppDelegate.swift in Sources */,
+				16B3890427C6E9280066F13C /* ItemCardCollectionCell.swift in Sources */,
+				16B3890927C6EECD0066F13C /* ItemCardViewModel.swift in Sources */,
+				16B3890727C6EC190066F13C /* UIColor+App.swift in Sources */,
+				16B3890127C6E6150066F13C /* ImageURLProtocol.swift in Sources */,
 				16B388FC27C6BC9F0066F13C /* NetworkManager.swift in Sources */,
 				16B388F227C696C00066F13C /* ScreenHeaderViewModel.swift in Sources */,
 				16B388EA27C6780D0066F13C /* ScreenHeaderCollectionCell.swift in Sources */,
@@ -332,6 +359,7 @@
 				16B388F627C6A8960066F13C /* DrinkApiResponse.swift in Sources */,
 				16B388E627C675530066F13C /* HomeViewModel.swift in Sources */,
 				16B388FE27C6DAC50066F13C /* ObservableTextField.swift in Sources */,
+				16B3890227C6E6150066F13C /* ImageCache.swift in Sources */,
 				16B388EE27C67C6C0066F13C /* RoundedSearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

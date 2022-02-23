@@ -33,7 +33,7 @@ class RoundedSearchTextField: UITextField {
         self.leftView = button
         self.placeholder = "Search"
         self.leftViewMode = .always
-        self.backgroundColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 1.0)
+        self.backgroundColor = .grayBackground
         self.layer.cornerRadius = height / 2
         self.setContentHuggingPriority(.defaultLow, for: .horizontal)
     }

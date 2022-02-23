@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(ScreenHeaderCollectionCell.self, forCellWithReuseIdentifier: "ScreenHeaderCollectionCell")
+        collectionView.register(ItemCardCollectionCell.self, forCellWithReuseIdentifier: "ItemCardCollectionCell")
         collectionView.dataSource = self
         collectionView.delegate = self
         viewModel.bind(with: collectionView)
@@ -44,7 +45,8 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch viewModel.sections[indexPath.row].groupType {
+        let section = viewModel.sections[indexPath.section]
+        switch section.groupType {
             case .screenHeader:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenHeaderCollectionCell", for: indexPath) as! ScreenHeaderCollectionCell
                 cell.viewModel = ScreenHeaderViewModel()
@@ -53,7 +55,13 @@ extension HomeViewController: UICollectionViewDataSource {
                             .store(in: &cancellable)
                 return cell
             case .defaultEntry:
-                break
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCardCollectionCell", for: indexPath) as! ItemCardCollectionCell
+                let group = section as? HomeViewModel.Group<Restaurant>
+                if let data = group?.groupData.first {
+                    cell.viewModel = ItemCardViewModel.init(restaurant: data)
+                }
+                
+                return cell
             case .otherEntries:
                 break
         }
