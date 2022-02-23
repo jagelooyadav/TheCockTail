@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "09E6ABDC-EB1A-4ADF-840F-03F5A3FE5C4C"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A208C1CD-0525-483F-90BC-62A08495AEBF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TheCockTail/Views/ScreenHeaderCollectionCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "init(frame:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "468549E0-3E4E-476C-8A38-4C67D3857E2A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TheCockTail/Views/ScreenHeaderCollectionCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "setup()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC27E8D8-4928-40EF-8B09-20FA0C1CEF82"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TheCockTail/Views/ScreenHeaderCollectionCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "calculateHeight()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DADC4D7A-3DC0-4CAA-9884-E91874D4C6C5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TheCockTail/Views/ScreenHeaderCollectionCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "init?(coder:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DADC4D7A-3DC0-4CAA-9884-E91874D4C6C5 - 2945a135e74958c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TheCockTail.ScreenHeaderCollectionCell.init(frame: __C.CGRect) -&gt; TheCockTail.ScreenHeaderCollectionCell"
+                  moduleName = "TheCockTail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jagelooyadav/Desktop/GitHub/TheCockTail/TheCockTail/TheCockTail/Views/ScreenHeaderCollectionCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "274">
+               </Location>
+               <Location
+                  uuid = "DADC4D7A-3DC0-4CAA-9884-E91874D4C6C5 - e5a654c197126ef3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TheCockTail.ScreenHeaderCollectionCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;TheCockTail.ScreenHeaderCollectionCell&gt;"
+                  moduleName = "TheCockTail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jagelooyadav/Desktop/GitHub/TheCockTail/TheCockTail/TheCockTail/Views/ScreenHeaderCollectionCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "217">
+               </Location>
+               <Location
+                  uuid = "DADC4D7A-3DC0-4CAA-9884-E91874D4C6C5 - e20f0b8c704b6af6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TheCockTail.ScreenHeaderCollectionCell.container.getter : __C.UIView"
+                  moduleName = "TheCockTail"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jagelooyadav/Desktop/GitHub/TheCockTail/TheCockTail/TheCockTail/Views/ScreenHeaderCollectionCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "49">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
