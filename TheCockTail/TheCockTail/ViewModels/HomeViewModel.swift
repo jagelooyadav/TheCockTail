@@ -61,7 +61,9 @@ extension HomeViewModel: HomeViewModelProtocol {
                 case .failure(let error):
                     print(error)
             }
-            self?.reloadable?.reloadData()
+            DispatchQueue.main.async {
+                self?.reloadable?.reloadData()
+            }
         }
     }
     
