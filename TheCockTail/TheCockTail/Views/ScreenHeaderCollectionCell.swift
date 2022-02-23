@@ -45,7 +45,7 @@ class ScreenHeaderCollectionCell: UICollectionViewCell {
         container.anchorToSuperView()
         
        container.addSubview(headerLabel)
-        headerLabel.anchorToSuperView(trailingRelation: .greaterOrEqual, bottomRelation: .ignore, leading: 16.0, trailing: 16.0, top: 60.0)
+        headerLabel.anchorToSuperView(trailingRelation: .greaterOrEqual, bottomRelation: .ignore, leading: 16.0, trailing: 16.0, top: 40.0)
         container.addSubview(searchBar)
         searchBar.anchorToSuperView(topAnchor: headerLabel.bottomAnchor, trailingRelation: .greaterOrEqual, leading: 16.0, trailing: 16.0, top: 20.0, bottom: 20.0)
         searchBar.widthAnchor.constraint(equalToConstant: 300.0).isActive = true
