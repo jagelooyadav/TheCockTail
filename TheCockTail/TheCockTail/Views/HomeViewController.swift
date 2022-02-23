@@ -6,18 +6,21 @@
 //
 
 import UIKit
+import Combine
 
 class HomeViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
+    private var cancellable = Set<AnyCancellable>()
     
-    var viewModel: HomeViewModelProtocol?
+    var viewModel: HomeViewModelProtocol = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(ScreenHeaderCollectionCell.self, forCellWithReuseIdentifier: "ScreenHeaderCollectionCell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        viewModel.bind(with: collectionView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,17 +36,28 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return viewModel.numberRows(in: section)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return viewModel.numberOfSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenHeaderCollectionCell", for: indexPath) as! ScreenHeaderCollectionCell
-        cell.viewModel = ScreenHeaderViewModel()
-        return cell
+        switch viewModel.sections[indexPath.row].groupType {
+            case .screenHeader:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenHeaderCollectionCell", for: indexPath) as! ScreenHeaderCollectionCell
+                cell.viewModel = ScreenHeaderViewModel()
+                cell.searchBar.textChange
+                    .assign(to: \HomeViewModel.searchText, on: self.viewModel as! HomeViewModel)
+                            .store(in: &cancellable)
+                return cell
+            case .defaultEntry:
+                break
+            case .otherEntries:
+                break
+        }
+        fatalError()
     }
 }
 
@@ -56,3 +70,4 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension UICollectionView: Reloadable {}

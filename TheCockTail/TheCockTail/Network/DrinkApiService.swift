@@ -14,7 +14,7 @@ protocol ServiceProvider {
 class DrinkApiService {
     
     private let apiClient: APIClientProtocol
-    init(apiClient: APIClientProtocol) {
+    init(apiClient: APIClientProtocol = NetworkManager.shared) {
         self.apiClient = apiClient
     }
 }

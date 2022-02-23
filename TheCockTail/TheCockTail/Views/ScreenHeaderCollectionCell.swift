@@ -10,10 +10,10 @@ import UIKit
 
 protocol ScreenHeaderProtocol {
     var headerTitle: String { get }
+    var searchText: String? { get set }
 }
 
 class ScreenHeaderCollectionCell: UICollectionViewCell {
-    
     private var headerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +22,7 @@ class ScreenHeaderCollectionCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var searchBar: RoundedSearchTextField = RoundedSearchTextField()
+    private(set) lazy var searchBar: RoundedSearchTextField = RoundedSearchTextField()
     
     var viewModel: ScreenHeaderProtocol? {
         didSet {

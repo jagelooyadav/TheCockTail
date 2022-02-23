@@ -25,6 +25,7 @@
 		16B388F627C6A8960066F13C /* DrinkApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388F527C6A8960066F13C /* DrinkApiResponse.swift */; };
 		16B388FA27C6B1F10066F13C /* DrinkApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388F927C6B1F10066F13C /* DrinkApiService.swift */; };
 		16B388FC27C6BC9F0066F13C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388FB27C6BC9F0066F13C /* NetworkManager.swift */; };
+		16B388FE27C6DAC50066F13C /* ObservableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388FD27C6DAC50066F13C /* ObservableTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		16B388F527C6A8960066F13C /* DrinkApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkApiResponse.swift; sourceTree = "<group>"; };
 		16B388F927C6B1F10066F13C /* DrinkApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkApiService.swift; sourceTree = "<group>"; };
 		16B388FB27C6BC9F0066F13C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		16B388FD27C6DAC50066F13C /* ObservableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 				16B388E927C6780D0066F13C /* ScreenHeaderCollectionCell.swift */,
 				16B388EB27C67B3D0066F13C /* UIView+Extension.swift */,
 				16B388ED27C67C6C0066F13C /* RoundedSearchTextField.swift */,
+				16B388FD27C6DAC50066F13C /* ObservableTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				16B388B627C668480066F13C /* SceneDelegate.swift in Sources */,
 				16B388F627C6A8960066F13C /* DrinkApiResponse.swift in Sources */,
 				16B388E627C675530066F13C /* HomeViewModel.swift in Sources */,
+				16B388FE27C6DAC50066F13C /* ObservableTextField.swift in Sources */,
 				16B388EE27C67C6C0066F13C /* RoundedSearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
