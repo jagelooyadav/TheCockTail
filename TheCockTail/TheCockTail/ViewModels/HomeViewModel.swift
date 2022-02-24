@@ -56,8 +56,11 @@ extension HomeViewModel: HomeViewModelProtocol {
             self?.otherEntriesSection.removeAll()
             switch result {
                 case .success(let data):
-                    let section = Group<Drink>(groupType: .otherEntries, groupData: data.drinks)
-                    self?.otherEntriesSection = [section]
+                    
+                    if !data.drinks.isEmpty {
+                        let section = Group<Drink>(groupType: .otherEntries, groupData: data.drinks)
+                        self?.otherEntriesSection = [section]
+                    }
                 case .failure(let error):
                     print(error)
             }
