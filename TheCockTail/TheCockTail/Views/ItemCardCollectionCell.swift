@@ -119,9 +119,9 @@ class ItemCardCollectionCell: UICollectionViewCell {
     }
     
     func calculateHeight(in width: CGFloat) -> CGFloat {
-        mainStack.layoutIfNeeded()
-        mainStack.setNeedsLayout()
-        return mainStack.systemLayoutSizeFitting(CGSize.init(width: width, height: CGFloat.leastNormalMagnitude), withHorizontalFittingPriority: .defaultLow, verticalFittingPriority: .required).height
+        layoutIfNeeded()
+        setNeedsLayout()
+        return mainStack.systemLayoutSizeFitting(CGSize.init(width: width, height: 0.0)).height
     }
     
     func loadImage(image: UIImage?) {

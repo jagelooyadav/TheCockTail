@@ -16,12 +16,14 @@ struct Drink: Decodable {
     let category: String
     let subCategory:String
     let thumbURLString: String
+    let descriptionText: String?
     
     enum CodingKeys: String, CodingKey {
         case name = "strDrink"
         case category = "strCategory"
         case subCategory = "strAlcoholic"
         case thumbURLString = "strDrinkThumb"
+        case descriptionText = "strInstructions"
     }
 }
 
