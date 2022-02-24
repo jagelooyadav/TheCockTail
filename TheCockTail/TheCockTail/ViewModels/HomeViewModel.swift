@@ -22,7 +22,7 @@ protocol Reloadable: AnyObject {
 
 class HomeViewModel {
     private let service: DrinkApiService
-    
+    var sections: [Section] = []
     private weak var reloadable: Reloadable?
     
     struct Group<T>: Section {
@@ -32,9 +32,8 @@ class HomeViewModel {
     
     init(service: DrinkApiService = DrinkApiService()) {
         self.service = service
+        self.sections.append(contentsOf: defaultSections)
     }
-    
-    private var otherEntriesSection: [Section] = []
     
     lazy var defaultSections: [Section] = {
         let screenHeader = Group<Void>(groupType: .screenHeader, groupData: [])
@@ -53,25 +52,23 @@ class HomeViewModel {
 extension HomeViewModel: HomeViewModelProtocol {
     func fetchData(query: String) {
         service.fetchDrinks(query: query) { [weak self] result  in
-            self?.otherEntriesSection.removeAll()
+            guard let self = self else { return }
+            self.sections.removeAll()
+            self.sections.append(contentsOf: self.defaultSections)
             switch result {
                 case .success(let data):
                     
                     if !data.drinks.isEmpty {
                         let section = Group<Drink>(groupType: .otherEntries, groupData: data.drinks)
-                        self?.otherEntriesSection = [section]
+                        self.sections.append(section)
                     }
                 case .failure(let error):
                     print(error)
             }
             DispatchQueue.main.async {
-                self?.reloadable?.reloadData()
+                self.reloadable?.reloadData()
             }
         }
-    }
-    
-    var sections: [Section] {
-        return defaultSections + otherEntriesSection
     }
     
     var numberOfSection: Int {
