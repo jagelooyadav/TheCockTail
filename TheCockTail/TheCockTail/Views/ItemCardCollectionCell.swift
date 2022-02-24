@@ -70,20 +70,26 @@ class ItemCardCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var mainStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 10.0
+        return stack
+    }()
+    
     private func setup() {
         let container = UIView()
         self.addSubview(container)
         container.anchorToSuperView(leading: 16.0, trailing: 16.0, top: 0.0, bottom: 16.0)
         container.layer.cornerRadius = 10.0
         container.backgroundColor = .grayBackground
-        container.addSubview(thumImageView)
-        thumImageView.anchorToSuperView(trailingRelation: .ignore,
-                                        bottomRelation: .greaterOrEqual,
-                                        leading: 10,
-                                        trailing: 10.0,
-                                        top: 10.0,
-                                        bottom: 10.0)
-        
+        container.addSubview(mainStack)
+        mainStack.addArrangedSubview(thumImageView)
+        mainStack.anchorToSuperView(trailingRelation: .greaterOrEqual, leading: 10,
+                                    trailing: 10.0,
+                                    top: 10.0,
+                                    bottom: 10.0)
+
         let contentSatck = UIStackView()
         contentSatck.axis = .vertical
         contentSatck.spacing = 10.0
@@ -91,13 +97,11 @@ class ItemCardCollectionCell: UICollectionViewCell {
         contentSatck.addArrangedSubview(subtitleLabel)
         contentSatck.addArrangedSubview(detailTitleLabel)
         contentSatck.alignment = .leading
-        container.addSubview(contentSatck)
-        contentSatck.anchorToSuperView(leadingAnchor: thumImageView.trailingAnchor,
-                                       trailingRelation: .greaterOrEqual,
-                                       leading: 10.0,
-                                       trailing: 10.0,
-                                       top: 10.0,
-                                       bottom: 10.0)
+        mainStack.addArrangedSubview(contentSatck)
+    }
+    
+    func updateLayout(mainStack: UIStackView, contentStack: UIStackView) {
+        /// Overridedn in sub class to change design
     }
     
     private func update() {

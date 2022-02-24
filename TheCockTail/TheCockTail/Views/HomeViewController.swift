@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         collectionView.register(ScreenHeaderCollectionCell.self, forCellWithReuseIdentifier: "ScreenHeaderCollectionCell")
         collectionView.register(ItemCardCollectionCell.self, forCellWithReuseIdentifier: "ItemCardCollectionCell")
+        collectionView.register(GridCollectionCell.self, forCellWithReuseIdentifier: "GridCollectionCell")
         collectionView.register(CollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewSectionHeader")
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -68,9 +69,19 @@ extension HomeViewController: UICollectionViewDataSource {
                 }
                 return cell
             case .otherEntries:
-                break
+                
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCollectionCell", for: indexPath) as! GridCollectionCell
+                let group = section as? HomeViewModel.Group<Drink>
+                if let data = group?.groupData[indexPath.row] {
+                    cell.viewModel = GridCardViewModel(drink: data)
+                }
+                if let urlString = cell.viewModel?.thumbURLString, let url = URL(string: urlString) {
+                    ImageCache.publicCache.load(url: url as NSURL) { [weak cell] image in
+                        cell?.loadImage(image: image)
+                    }
+                }
+                return cell
         }
-        fatalError()
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -98,6 +109,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
             let cell = ItemCardCollectionCell()
             cell.viewModel = ItemCardViewModel(restaurant: data)
             return CGSize(width: width - 1.0, height: cell.calculateHeight())
+        } else {
+            if groupType == .otherEntries,
+               let group = viewModel.sections[indexPath.section] as? HomeViewModel.Group<Drink>,
+               let data = group.groupData.first {
+                let cell = GridCollectionCell()
+                cell.viewModel = GridCardViewModel(drink: data)
+                return CGSize(width: width - 1.0, height: cell.calculateHeight())
+            }
         }
         return .zero
     }
