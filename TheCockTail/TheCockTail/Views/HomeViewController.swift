@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     
     var viewModel: HomeViewModelProtocol = HomeViewModel()
     
+    // MARK: Collection Builders
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(ScreenHeaderCollectionCell.self, forCellWithReuseIdentifier: "ScreenHeaderCollectionCell")
@@ -36,6 +37,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
     }
 }
+
 // MARK: Collection Builders
 extension HomeViewController {
     private func gridCell(section: Section, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,7 +74,7 @@ extension HomeViewController {
         cell.viewModel = ScreenHeaderViewModel()
         cell.searchBar.textChange
             .assign(to: \HomeViewModel.searchText, on: self.viewModel as! HomeViewModel)
-                    .store(in: &cancellable)
+            .store(in: &cancellable)
         return cell
     }
 }
