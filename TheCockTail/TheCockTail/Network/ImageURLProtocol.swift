@@ -32,8 +32,7 @@ class ImageURLProtocol: URLProtocol {
         
         block = DispatchWorkItem(block: {
             if self.cancelledOrComplete == false {
-                let fileURL = URL(fileURLWithPath: reqURL.path)
-                if let data = try? Data(contentsOf: fileURL) {
+                if let data = try? Data(contentsOf: reqURL) {
                     urlClient.urlProtocol(self, didLoad: data)
                     urlClient.urlProtocolDidFinishLoading(self)
                 }
