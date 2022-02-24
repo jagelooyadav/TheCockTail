@@ -16,13 +16,24 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     private let endPoint = "https://thecocktaildb.com/api/json/v1/1/search.php?s="
+    var isStub = false
 }
 
 extension NetworkManager: APIClientProtocol {
     func call<Response: Decodable>(request: String, completion: ((Result<Response, Error>) -> Void)?) {
         let urlToHit = endPoint + request
         DispatchQueue.global().async {
-            guard let url = URL(string: urlToHit) else {
+            let url: URL?
+            if self.isStub {
+                guard let filepath = Bundle.main.path(forResource: "apistub", ofType: "json") else {
+                    completion?(.failure(CustomError.invalidURL))
+                    return
+                }
+                url = URL(fileURLWithPath: filepath)
+            } else {
+                url = URL(string: urlToHit)
+            }
+            guard let url = url else {
                 completion?(.failure(CustomError.invalidRequest))
                 return
             }
@@ -43,6 +54,7 @@ enum CustomError: Error {
     case invalidRequest
     case invalidResponse
     case unableToParse
+    case invalidURL
     
     var errorDescription: String {
             switch self {
@@ -52,6 +64,8 @@ enum CustomError: Error {
                     return "Invalid Response"
                 case .unableToParse:
                     return "Something went wrong"
+                case .invalidURL:
+                    return "Wrong end point"
             }
         }
 }
