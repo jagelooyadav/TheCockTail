@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         collectionView.register(ScreenHeaderCollectionCell.self, forCellWithReuseIdentifier: ScreenHeaderCollectionCell.identifier)
         collectionView.register(ItemCardCollectionCell.self, forCellWithReuseIdentifier: ItemCardCollectionCell.identifier)
-        collectionView.register(GridCollectionCell.self, forCellWithReuseIdentifier: GridCollectionCell.identifier)
+        collectionView.register(GridCollectionCell.self, forCellWithReuseIdentifier: GridCollectionCell.cellId)
         collectionView.register(CollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewSectionHeader.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
 // MARK: Collection Builders
 extension HomeViewController {
     private func gridCell(section: Section, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCollectionCell", for: indexPath) as! GridCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridCollectionCell.cellId, for: indexPath) as! GridCollectionCell
         let group = section as? HomeViewModel.Group<Drink>
         if let data = group?.groupData[indexPath.row] {
             cell.viewModel = GridCardViewModel(drink: data)

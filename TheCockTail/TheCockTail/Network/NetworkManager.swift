@@ -11,7 +11,6 @@ protocol APIClientProtocol {
     func call<Response: Decodable>(request: String, completion: ((Result<Response, Error>) -> Void)?)
 }
 
-
 class NetworkManager {
     static let shared = NetworkManager()
     private init() {}

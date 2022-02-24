@@ -86,16 +86,37 @@ class ItemDetailViewController: UIViewController {
         imageView.heightAnchor.constraint(equalTo: view.widthAnchor, constant: -32.0).isActive = true
     }
     
-    func setupOtherElements() {
+    private func createBoldLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 16.0)
+        return label
+    }
+    
+    private func createNormalLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.numberOfLines = 0
+        label.textColor = .darkGray
+        label.font = UIFont.preferredFont(forTextStyle: .body, compatibleWith: traitCollection)
+        return label
+    }
+    
+    private func setupOtherElements() {
         contentStack.addArrangedSubview(titleLabel)
         contentStack.addArrangedSubview(subtitleLabel)
         contentStack.addArrangedSubview(detailTitleLabel)
+        contentStack.addArrangedSubview(self.createBoldLabel(text: viewModel.instructionPlaceholder))
         contentStack.addArrangedSubview(descriptionLabel)
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
         detailTitleLabel.text = viewModel.detailTitle
         descriptionLabel.text = viewModel.descriptionText
-        
+        contentStack.addArrangedSubview(self.createBoldLabel(text: viewModel.gradientsPlaceHolder))
+        contentStack.addArrangedSubview(self.createNormalLabel(text: viewModel.gradients.joined(separator: ", ")))
+        contentStack.addArrangedSubview(self.createBoldLabel(text: viewModel.measurmentPlaceholder))
+        contentStack.addArrangedSubview(self.createNormalLabel(text: viewModel.measurments.joined(separator: ", ")))
     }
     
     private func setupScroll() {

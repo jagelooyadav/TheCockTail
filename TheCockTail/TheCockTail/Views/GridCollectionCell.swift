@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class GridCollectionCell: ItemCardCollectionCell {
-    static let identifier = "GridCollectionCell"
+    static let cellId = "GridCollectionCell"
     override func updateLayout(mainStack: UIStackView, contentStack: UIStackView, container: UIView) {
         mainStack.axis = .vertical
         contentStack.spacing = 0.0
