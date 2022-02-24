@@ -14,4 +14,8 @@ class GridCollectionCell: ItemCardCollectionCell {
         contentStack.spacing = 0.0
         container.backgroundColor = .clear
     }
+    
+    func updateThumbDiamension(width: CGFloat, height: CGFloat) {
+        super.updateThumbImageDiamension(width: width * 0.80, height: width * 0.80)
+    }
 }

@@ -145,6 +145,15 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         }
         return .zero
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let groupType = viewModel.sections[indexPath.section].groupType
+        guard groupType == .otherEntries, let group = viewModel.sections[indexPath.section] as? HomeViewModel.Group<Drink> else  { return }
+        
+        let viewModel = ItemDetailViewModel(drink: group.groupData[indexPath.row])
+        let controller = ItemDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension UICollectionView: Reloadable {}

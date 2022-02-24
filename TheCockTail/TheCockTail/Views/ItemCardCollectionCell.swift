@@ -119,18 +119,18 @@ class ItemCardCollectionCell: UICollectionViewCell {
     }
     
     func calculateHeight(in width: CGFloat) -> CGFloat {
-        self.layoutIfNeeded()
-        
-        return mainStack.systemLayoutSizeFitting(CGSize.init(width: width, height: 0), withHorizontalFittingPriority: .defaultLow, verticalFittingPriority: .required).height
+        mainStack.layoutIfNeeded()
+        mainStack.setNeedsLayout()
+        return mainStack.systemLayoutSizeFitting(CGSize.init(width: width, height: CGFloat.leastNormalMagnitude), withHorizontalFittingPriority: .defaultLow, verticalFittingPriority: .required).height
     }
     
     func loadImage(image: UIImage?) {
         self.thumImageView.image = image
     }
     
-    func updateThumbDiamension(width: CGFloat, height: CGFloat) {
-        thumbHeight.constant = width * 0.80
-        thumbWidth.constant = width *  0.80
+    func updateThumbImageDiamension(width: CGFloat, height: CGFloat) {
+        thumbHeight.constant = width
+        thumbWidth.constant = width
         thumImageView.contentMode = .scaleToFill
         self.layoutIfNeeded()
     }
