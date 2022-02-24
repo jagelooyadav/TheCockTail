@@ -31,6 +31,8 @@
 		16B3890427C6E9280066F13C /* ItemCardCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890327C6E9280066F13C /* ItemCardCollectionCell.swift */; };
 		16B3890727C6EC190066F13C /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890627C6EC190066F13C /* UIColor+App.swift */; };
 		16B3890927C6EECD0066F13C /* ItemCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890827C6EECD0066F13C /* ItemCardViewModel.swift */; };
+		16B3890B27C6F7A30066F13C /* CollectionViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890A27C6F7A30066F13C /* CollectionViewSectionHeader.swift */; };
+		16B3890D27C75A0F0066F13C /* SectionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890C27C75A0F0066F13C /* SectionHeaderViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		16B3890327C6E9280066F13C /* ItemCardCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardCollectionCell.swift; sourceTree = "<group>"; };
 		16B3890627C6EC190066F13C /* UIColor+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+App.swift"; sourceTree = "<group>"; };
 		16B3890827C6EECD0066F13C /* ItemCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardViewModel.swift; sourceTree = "<group>"; };
+		16B3890A27C6F7A30066F13C /* CollectionViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewSectionHeader.swift; sourceTree = "<group>"; };
+		16B3890C27C75A0F0066F13C /* SectionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 				16B388E527C675530066F13C /* HomeViewModel.swift */,
 				16B388F127C696C00066F13C /* ScreenHeaderViewModel.swift */,
 				16B3890827C6EECD0066F13C /* ItemCardViewModel.swift */,
+				16B3890C27C75A0F0066F13C /* SectionHeaderViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 				16B388ED27C67C6C0066F13C /* RoundedSearchTextField.swift */,
 				16B388FD27C6DAC50066F13C /* ObservableTextField.swift */,
 				16B3890327C6E9280066F13C /* ItemCardCollectionCell.swift */,
+				16B3890A27C6F7A30066F13C /* CollectionViewSectionHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 				16B388B827C668480066F13C /* HomeViewController.swift in Sources */,
 				16B388B427C668480066F13C /* AppDelegate.swift in Sources */,
 				16B3890427C6E9280066F13C /* ItemCardCollectionCell.swift in Sources */,
+				16B3890D27C75A0F0066F13C /* SectionHeaderViewModel.swift in Sources */,
 				16B3890927C6EECD0066F13C /* ItemCardViewModel.swift in Sources */,
 				16B3890727C6EC190066F13C /* UIColor+App.swift in Sources */,
 				16B3890127C6E6150066F13C /* ImageURLProtocol.swift in Sources */,
@@ -361,6 +368,7 @@
 				16B388FE27C6DAC50066F13C /* ObservableTextField.swift in Sources */,
 				16B3890227C6E6150066F13C /* ImageCache.swift in Sources */,
 				16B388EE27C67C6C0066F13C /* RoundedSearchTextField.swift in Sources */,
+				16B3890B27C6F7A30066F13C /* CollectionViewSectionHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

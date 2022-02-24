@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         collectionView.register(ScreenHeaderCollectionCell.self, forCellWithReuseIdentifier: "ScreenHeaderCollectionCell")
         collectionView.register(ItemCardCollectionCell.self, forCellWithReuseIdentifier: "ItemCardCollectionCell")
+        collectionView.register(CollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewSectionHeader")
         collectionView.dataSource = self
         collectionView.delegate = self
         viewModel.bind(with: collectionView)
@@ -58,23 +59,55 @@ extension HomeViewController: UICollectionViewDataSource {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCardCollectionCell", for: indexPath) as! ItemCardCollectionCell
                 let group = section as? HomeViewModel.Group<Restaurant>
                 if let data = group?.groupData.first {
-                    cell.viewModel = ItemCardViewModel.init(restaurant: data)
+                    cell.viewModel = ItemCardViewModel(restaurant: data)
                 }
-                
+                if let urlString = cell.viewModel?.thumbURLString, let url = URL(string: urlString) {
+                    ImageCache.publicCache.load(url: url as NSURL) { [weak cell] image in
+                        cell?.loadImage(image: image)
+                    }
+                }
                 return cell
             case .otherEntries:
                 break
         }
         fatalError()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionViewSectionHeader", for: indexPath) as! CollectionViewSectionHeader
+            header.viewModel = SectionHeaderViewModel()
+            return header
+        } else {
+            fatalError()
+        }
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let groupType = viewModel.sections[indexPath.section].groupType
         let width = collectionView.frame.width
-        let cell = ScreenHeaderCollectionCell()
-        cell.viewModel = ScreenHeaderViewModel()
-        return CGSize(width: width - 1.0, height: cell.calculateHeight())
+        if groupType == .screenHeader {
+            let cell = ScreenHeaderCollectionCell()
+            cell.viewModel = ScreenHeaderViewModel()
+            return CGSize(width: width - 1.0, height: cell.calculateHeight())
+        } else if groupType == .defaultEntry,
+                  let group = viewModel.sections[indexPath.section] as? HomeViewModel.Group<Restaurant>,
+                  let data = group.groupData.first {
+            let cell = ItemCardCollectionCell()
+            cell.viewModel = ItemCardViewModel(restaurant: data)
+            return CGSize(width: width - 1.0, height: cell.calculateHeight())
+        }
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if viewModel.sections[section].groupType == .defaultEntry {
+            let width = collectionView.frame.width
+            return CGSize.init(width: width - 1.0, height: 60.0)
+        }
+        return .zero
     }
 }
 

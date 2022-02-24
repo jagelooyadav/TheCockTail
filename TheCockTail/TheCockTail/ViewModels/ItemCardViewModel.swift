@@ -9,6 +9,11 @@ import Foundation
 
 class ItemCardViewModel: ItemCardDataSource {
     let restaurant: Restaurant
+    
+    var thumbURLString: String? {
+        return restaurant.url
+    }
+    
     init(restaurant: Restaurant) {
         self.restaurant = restaurant
     }

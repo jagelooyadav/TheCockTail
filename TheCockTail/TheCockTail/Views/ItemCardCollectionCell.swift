@@ -12,6 +12,7 @@ protocol ItemCardDataSource {
     var title: String { get }
     var subtitle: String { get }
     var detailTitle: String { get }
+    var thumbURLString: String? { get }
 }
 
 class ItemCardCollectionCell: UICollectionViewCell {
@@ -72,7 +73,7 @@ class ItemCardCollectionCell: UICollectionViewCell {
     private func setup() {
         let container = UIView()
         self.addSubview(container)
-        container.anchorToSuperView(leading: 16.0, trailing: 16.0, top: 16.0, bottom: 16.0)
+        container.anchorToSuperView(leading: 16.0, trailing: 16.0, top: 0.0, bottom: 16.0)
         container.layer.cornerRadius = 10.0
         container.backgroundColor = .grayBackground
         container.addSubview(thumImageView)
@@ -110,6 +111,10 @@ class ItemCardCollectionCell: UICollectionViewCell {
     func calculateHeight() -> CGFloat {
         self.layoutIfNeeded()
         return self.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+    }
+    
+    func loadImage(image: UIImage?) {
+        self.thumImageView.image = image
     }
 }
 
