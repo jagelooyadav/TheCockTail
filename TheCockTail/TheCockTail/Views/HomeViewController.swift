@@ -36,7 +36,48 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
     }
 }
+// MARK: Collection Builders
+extension HomeViewController {
+    private func gridCell(section: Section, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCollectionCell", for: indexPath) as! GridCollectionCell
+        let group = section as? HomeViewModel.Group<Drink>
+        if let data = group?.groupData[indexPath.row] {
+            cell.viewModel = GridCardViewModel(drink: data)
+        }
+        if let urlString = cell.viewModel?.thumbURLString, let url = URL(string: urlString) {
+            ImageCache.publicCache.load(url: url as NSURL) { [weak cell] image in
+                cell?.loadImage(image: image)
+            }
+        }
+        cell.updateThumbDiamension(width: (collectionView.frame.width)/2, height: (collectionView.frame.width)/2)
+        return cell
+    }
+    
+    private func defaultEntryGridCell(section: Section, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCardCollectionCell", for: indexPath) as! ItemCardCollectionCell
+        let group = section as? HomeViewModel.Group<Restaurant>
+        if let data = group?.groupData.first {
+            cell.viewModel = ItemCardViewModel(restaurant: data)
+        }
+        if let urlString = cell.viewModel?.thumbURLString, let url = URL(string: urlString) {
+            ImageCache.publicCache.load(url: url as NSURL) { [weak cell] image in
+                cell?.loadImage(image: image)
+            }
+        }
+        return cell
+    }
+    
+    private func headerCell(section: Section, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenHeaderCollectionCell", for: indexPath) as! ScreenHeaderCollectionCell
+        cell.viewModel = ScreenHeaderViewModel()
+        cell.searchBar.textChange
+            .assign(to: \HomeViewModel.searchText, on: self.viewModel as! HomeViewModel)
+                    .store(in: &cancellable)
+        return cell
+    }
+}
 
+// MARK: UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberRows(in: section)
@@ -48,41 +89,12 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let section = viewModel.sections[indexPath.section]
-        switch section.groupType {
-            case .screenHeader:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenHeaderCollectionCell", for: indexPath) as! ScreenHeaderCollectionCell
-                cell.viewModel = ScreenHeaderViewModel()
-                cell.searchBar.textChange
-                    .assign(to: \HomeViewModel.searchText, on: self.viewModel as! HomeViewModel)
-                            .store(in: &cancellable)
-                return cell
-            case .defaultEntry:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCardCollectionCell", for: indexPath) as! ItemCardCollectionCell
-                let group = section as? HomeViewModel.Group<Restaurant>
-                if let data = group?.groupData.first {
-                    cell.viewModel = ItemCardViewModel(restaurant: data)
-                }
-                if let urlString = cell.viewModel?.thumbURLString, let url = URL(string: urlString) {
-                    ImageCache.publicCache.load(url: url as NSURL) { [weak cell] image in
-                        cell?.loadImage(image: image)
-                    }
-                }
-                return cell
-            case .otherEntries:
-                
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCollectionCell", for: indexPath) as! GridCollectionCell
-                let group = section as? HomeViewModel.Group<Drink>
-                if let data = group?.groupData[indexPath.row] {
-                    cell.viewModel = GridCardViewModel(drink: data)
-                }
-                if let urlString = cell.viewModel?.thumbURLString, let url = URL(string: urlString) {
-                    ImageCache.publicCache.load(url: url as NSURL) { [weak cell] image in
-                        cell?.loadImage(image: image)
-                    }
-                }
-                cell.updateThumbDiamension(width: (collectionView.frame.width)/2, height: (collectionView.frame.width)/2)
-                return cell
-        }
+        typealias CreateCell = (Section, UICollectionView, IndexPath) -> UICollectionViewCell
+        let mapping: [GroupType: CreateCell] = [.screenHeader: self.headerCell(section:collectionView:indexPath:),
+                                                .defaultEntry: self.defaultEntryGridCell(section:collectionView:indexPath:),
+                                                .otherEntries: self.gridCell(section:collectionView:indexPath:)]
+        return mapping[section.groupType]!(section, collectionView, indexPath)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -96,6 +108,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let groupType = viewModel.sections[indexPath.section].groupType
