@@ -108,14 +108,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                   let data = group.groupData.first {
             let cell = ItemCardCollectionCell()
             cell.viewModel = ItemCardViewModel(restaurant: data)
-            return CGSize(width: width - 1.0, height: cell.calculateHeight())
+            return CGSize(width: width - 1.0, height: cell.calculateHeight(in: width - 1.0))
         } else {
             if groupType == .otherEntries,
                let group = viewModel.sections[indexPath.section] as? HomeViewModel.Group<Drink>,
                let data = group.groupData.first {
                 let cell = GridCollectionCell()
                 cell.viewModel = GridCardViewModel(drink: data)
-                return CGSize(width: width - 1.0, height: cell.calculateHeight())
+                return CGSize(width: (width - 10.0)/2, height: cell.calculateHeight(in: (width - 5.0)/2))
             }
         }
         return .zero

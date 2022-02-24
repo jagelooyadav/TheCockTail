@@ -98,6 +98,7 @@ class ItemCardCollectionCell: UICollectionViewCell {
         contentSatck.addArrangedSubview(detailTitleLabel)
         contentSatck.alignment = .leading
         mainStack.addArrangedSubview(contentSatck)
+        self.updateLayout(mainStack: mainStack, contentStack: contentSatck)
     }
     
     func updateLayout(mainStack: UIStackView, contentStack: UIStackView) {
@@ -112,9 +113,9 @@ class ItemCardCollectionCell: UICollectionViewCell {
         self.layoutIfNeeded()
     }
     
-    func calculateHeight() -> CGFloat {
+    func calculateHeight(in width: CGFloat) -> CGFloat {
         self.layoutIfNeeded()
-        return self.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        return mainStack.systemLayoutSizeFitting(CGSize.init(width: width, height: 0), withHorizontalFittingPriority: .defaultLow, verticalFittingPriority: .required).height
     }
     
     func loadImage(image: UIImage?) {
