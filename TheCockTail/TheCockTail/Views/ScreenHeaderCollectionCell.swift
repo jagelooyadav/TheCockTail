@@ -14,6 +14,7 @@ protocol ScreenHeaderProtocol {
 }
 
 class ScreenHeaderCollectionCell: UICollectionViewCell {
+    static let identifier = "ScreenHeaderCollectionCell"
     private var headerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

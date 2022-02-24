@@ -14,7 +14,7 @@ protocol CollectionViewSectionHeaderDataSource {
 }
 
 class CollectionViewSectionHeader: UICollectionReusableView {
-    
+    static let identifier = "CollectionViewSectionHeader"
     var viewModel: CollectionViewSectionHeaderDataSource? {
         didSet {
             self.update()

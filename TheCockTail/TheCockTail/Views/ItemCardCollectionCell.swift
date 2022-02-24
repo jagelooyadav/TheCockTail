@@ -16,6 +16,8 @@ protocol ItemCardDataSource {
 }
 
 class ItemCardCollectionCell: UICollectionViewCell {
+    static let identifier = "ItemCardCollectionCell"
+
     private var thumbWidth: NSLayoutConstraint!
     private var thumbHeight: NSLayoutConstraint!
     

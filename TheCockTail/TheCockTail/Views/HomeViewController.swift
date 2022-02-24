@@ -9,7 +9,9 @@ import UIKit
 import Combine
 
 class HomeViewController: UIViewController {
-    
+    private enum Constant {
+        static let headerHeight: CGFloat = 60.0
+    }
     @IBOutlet private weak var collectionView: UICollectionView!
     private var cancellable = Set<AnyCancellable>()
     
@@ -18,10 +20,10 @@ class HomeViewController: UIViewController {
     // MARK: Collection Builders
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(ScreenHeaderCollectionCell.self, forCellWithReuseIdentifier: "ScreenHeaderCollectionCell")
-        collectionView.register(ItemCardCollectionCell.self, forCellWithReuseIdentifier: "ItemCardCollectionCell")
-        collectionView.register(GridCollectionCell.self, forCellWithReuseIdentifier: "GridCollectionCell")
-        collectionView.register(CollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewSectionHeader")
+        collectionView.register(ScreenHeaderCollectionCell.self, forCellWithReuseIdentifier: ScreenHeaderCollectionCell.identifier)
+        collectionView.register(ItemCardCollectionCell.self, forCellWithReuseIdentifier: ItemCardCollectionCell.identifier)
+        collectionView.register(GridCollectionCell.self, forCellWithReuseIdentifier: GridCollectionCell.identifier)
+        collectionView.register(CollectionViewSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewSectionHeader.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         viewModel.bind(with: collectionView)
@@ -56,7 +58,7 @@ extension HomeViewController {
     }
     
     private func defaultEntryGridCell(section: Section, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCardCollectionCell", for: indexPath) as! ItemCardCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCardCollectionCell.identifier, for: indexPath) as! ItemCardCollectionCell
         let group = section as? HomeViewModel.Group<Restaurant>
         if let data = group?.groupData.first {
             cell.viewModel = ItemCardViewModel(restaurant: data)
@@ -70,7 +72,7 @@ extension HomeViewController {
     }
     
     private func headerCell(section: Section, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenHeaderCollectionCell", for: indexPath) as! ScreenHeaderCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScreenHeaderCollectionCell.identifier, for: indexPath) as! ScreenHeaderCollectionCell
         cell.viewModel = ScreenHeaderViewModel()
         cell.searchBar.textChange
             .assign(to: \HomeViewModel.searchText, on: self.viewModel as! HomeViewModel)
@@ -101,7 +103,7 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionViewSectionHeader", for: indexPath) as! CollectionViewSectionHeader
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewSectionHeader.identifier, for: indexPath) as! CollectionViewSectionHeader
             header.viewModel = SectionHeaderViewModel()
             return header
         } else {
@@ -141,7 +143,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if viewModel.sections[section].groupType == .defaultEntry {
             let width = collectionView.frame.width
-            return CGSize.init(width: width - 1.0, height: 60.0)
+            return CGSize.init(width: width - 1.0, height: Constant.headerHeight)
         }
         return .zero
     }
@@ -149,11 +151,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let groupType = viewModel.sections[indexPath.section].groupType
         guard groupType == .otherEntries, let group = viewModel.sections[indexPath.section] as? HomeViewModel.Group<Drink> else  { return }
-        
         let viewModel = ItemDetailViewModel(drink: group.groupData[indexPath.row])
         let controller = ItemDetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(controller, animated: true)
     }
 }
-
 extension UICollectionView: Reloadable {}
