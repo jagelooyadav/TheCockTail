@@ -35,6 +35,7 @@
 		16B3890D27C75A0F0066F13C /* SectionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890C27C75A0F0066F13C /* SectionHeaderViewModel.swift */; };
 		16B3890F27C75DFF0066F13C /* GridCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3890E27C75DFF0066F13C /* GridCollectionCell.swift */; };
 		16B3891127C760110066F13C /* GridCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3891027C760110066F13C /* GridCardViewModel.swift */; };
+		16B3891527C808B00066F13C /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3891427C808B00066F13C /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		16B3890C27C75A0F0066F13C /* SectionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderViewModel.swift; sourceTree = "<group>"; };
 		16B3890E27C75DFF0066F13C /* GridCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionCell.swift; sourceTree = "<group>"; };
 		16B3891027C760110066F13C /* GridCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCardViewModel.swift; sourceTree = "<group>"; };
+		16B3891427C808B00066F13C /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				16B3890327C6E9280066F13C /* ItemCardCollectionCell.swift */,
 				16B3890A27C6F7A30066F13C /* CollectionViewSectionHeader.swift */,
 				16B3890E27C75DFF0066F13C /* GridCollectionCell.swift */,
+				16B3891427C808B00066F13C /* ItemDetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				16B388B427C668480066F13C /* AppDelegate.swift in Sources */,
 				16B3890427C6E9280066F13C /* ItemCardCollectionCell.swift in Sources */,
 				16B3890D27C75A0F0066F13C /* SectionHeaderViewModel.swift in Sources */,
+				16B3891527C808B00066F13C /* ItemDetailViewController.swift in Sources */,
 				16B3890927C6EECD0066F13C /* ItemCardViewModel.swift in Sources */,
 				16B3890727C6EC190066F13C /* UIColor+App.swift in Sources */,
 				16B3890127C6E6150066F13C /* ImageURLProtocol.swift in Sources */,
