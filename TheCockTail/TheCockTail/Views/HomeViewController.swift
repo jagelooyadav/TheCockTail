@@ -80,6 +80,7 @@ extension HomeViewController: UICollectionViewDataSource {
                         cell?.loadImage(image: image)
                     }
                 }
+                cell.updateThumbDiamension(width: (collectionView.frame.width)/2, height: (collectionView.frame.width)/2)
                 return cell
         }
     }
@@ -115,7 +116,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
                let data = group.groupData.first {
                 let cell = GridCollectionCell()
                 cell.viewModel = GridCardViewModel(drink: data)
-                return CGSize(width: (width - 10.0)/2, height: cell.calculateHeight(in: (width - 5.0)/2))
+                cell.updateThumbDiamension(width: (collectionView.frame.width)/2, height: (collectionView.frame.width)/2)
+                return CGSize(width: (width - 20.0)/2, height: cell.calculateHeight(in: (width - 5.0)/2))
             }
         }
         return .zero

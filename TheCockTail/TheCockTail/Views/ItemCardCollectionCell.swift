@@ -16,6 +16,9 @@ protocol ItemCardDataSource {
 }
 
 class ItemCardCollectionCell: UICollectionViewCell {
+    private var thumbWidth: NSLayoutConstraint!
+    private var thumbHeight: NSLayoutConstraint!
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,8 +50,6 @@ class ItemCardCollectionCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10.0
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.widthAnchor.constraint(equalToConstant: 150.0).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
         imageView.backgroundColor = .yellow
         return imageView
     }()
@@ -80,13 +81,13 @@ class ItemCardCollectionCell: UICollectionViewCell {
     private func setup() {
         let container = UIView()
         self.addSubview(container)
-        container.anchorToSuperView(leading: 16.0, trailing: 16.0, top: 0.0, bottom: 16.0)
+        container.anchorToSuperView(leading: 10.0, trailing: 10.0, top: 0.0, bottom: 16.0)
         container.layer.cornerRadius = 10.0
         container.backgroundColor = .grayBackground
         container.addSubview(mainStack)
         mainStack.addArrangedSubview(thumImageView)
-        mainStack.anchorToSuperView(trailingRelation: .greaterOrEqual, leading: 10,
-                                    trailing: 10.0,
+        mainStack.anchorToSuperView(trailingRelation: .greaterOrEqual, leading: 10.0,
+                                    trailing: 0.0,
                                     top: 10.0,
                                     bottom: 10.0)
 
@@ -98,10 +99,14 @@ class ItemCardCollectionCell: UICollectionViewCell {
         contentSatck.addArrangedSubview(detailTitleLabel)
         contentSatck.alignment = .leading
         mainStack.addArrangedSubview(contentSatck)
-        self.updateLayout(mainStack: mainStack, contentStack: contentSatck)
+        thumbWidth = thumImageView.widthAnchor.constraint(equalToConstant: 150.0)
+        thumbHeight = thumImageView.heightAnchor.constraint(equalToConstant: 80.0)
+        thumbWidth.isActive = true
+        thumbHeight.isActive = true
+        self.updateLayout(mainStack: mainStack, contentStack: contentSatck, container: container)
     }
     
-    func updateLayout(mainStack: UIStackView, contentStack: UIStackView) {
+    func updateLayout(mainStack: UIStackView, contentStack: UIStackView, container: UIView) {
         /// Overridedn in sub class to change design
     }
     
@@ -115,11 +120,19 @@ class ItemCardCollectionCell: UICollectionViewCell {
     
     func calculateHeight(in width: CGFloat) -> CGFloat {
         self.layoutIfNeeded()
+        
         return mainStack.systemLayoutSizeFitting(CGSize.init(width: width, height: 0), withHorizontalFittingPriority: .defaultLow, verticalFittingPriority: .required).height
     }
     
     func loadImage(image: UIImage?) {
         self.thumImageView.image = image
+    }
+    
+    func updateThumbDiamension(width: CGFloat, height: CGFloat) {
+        thumbHeight.constant = width * 0.80
+        thumbWidth.constant = width *  0.80
+        thumImageView.contentMode = .scaleToFill
+        self.layoutIfNeeded()
     }
 }
 
