@@ -135,4 +135,8 @@ class ItemDetailViewController: UIViewController {
         scrollingContentView.heightAnchor.constraint(greaterThanOrEqualTo: wrapperView.heightAnchor).isActive = true
         view.backgroundColor = .white
     }
+    
+    deinit {
+        print("De-Initialised")
+    }
 }
