@@ -70,7 +70,8 @@ class ItemCardCollectionCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        self.setup()
     }
     
     private lazy var mainStack: UIStackView = {
