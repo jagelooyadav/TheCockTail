@@ -27,6 +27,7 @@ class HomeViewModel {
     
     struct Group<T>: Section {
         let groupType: GroupType
+        var title: String?
         let groupData: [T]
     }
     
@@ -37,7 +38,9 @@ class HomeViewModel {
     
     lazy var defaultSections: [Section] = {
         let screenHeader = Group<Void>(groupType: .screenHeader, groupData: [])
-        let defaultEntry = Group<Restaurant>(groupType: .defaultEntry, groupData: [Restaurant()])
+        let defaultEntry = Group<Restaurant>(groupType: .defaultEntry,
+                                             title: "New Restaurant",
+                                             groupData: [Restaurant()])
         return [screenHeader, defaultEntry]
     }()
     
@@ -59,7 +62,7 @@ extension HomeViewModel: HomeViewModelProtocol {
                 case .success(let data):
                     
                     if !data.drinks.isEmpty {
-                        let section = Group<Drink>(groupType: .otherEntries, groupData: data.drinks)
+                        let section = Group<Drink>(groupType: .otherEntries, title: "\(data.drinks.count) Items found", groupData: data.drinks)
                         self.sections.append(section)
                     }
                 case .failure(let error):
@@ -98,6 +101,7 @@ extension HomeViewModel: HomeViewModelProtocol {
 
 protocol Section {
     var groupType: GroupType { get }
+    var title: String? { get }
 }
 
 enum GroupType {

@@ -10,7 +10,7 @@ import UIKit
 
 protocol CollectionViewSectionHeaderDataSource {
     var buttonTitle: String { get }
-    var title: String { get }
+    var title: String? { get }
 }
 
 class CollectionViewSectionHeader: UICollectionReusableView {

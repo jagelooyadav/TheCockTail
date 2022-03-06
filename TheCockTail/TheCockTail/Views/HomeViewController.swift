@@ -104,7 +104,8 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewSectionHeader.identifier, for: indexPath) as! CollectionViewSectionHeader
-            header.viewModel = SectionHeaderViewModel()
+            let section = viewModel.sections[indexPath.section]
+            header.viewModel = SectionHeaderViewModel(title: section.title)
             return header
         } else {
             fatalError()
@@ -141,7 +142,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if viewModel.sections[section].groupType == .defaultEntry {
+        if viewModel.sections[section].groupType == .defaultEntry || viewModel.sections[section].groupType == .otherEntries {
             let width = collectionView.frame.width
             return CGSize.init(width: width - 1.0, height: Constant.headerHeight)
         }

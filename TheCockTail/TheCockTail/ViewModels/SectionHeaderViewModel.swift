@@ -9,6 +9,10 @@ import Foundation
 
 class SectionHeaderViewModel: CollectionViewSectionHeaderDataSource {
     var buttonTitle: String { "See All" }
-    var title: String { "New Restaurant" }
+    var title: String?
+    
+    init(title: String?) {
+        self.title = title
+    }
 }
  
