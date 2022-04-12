@@ -45,7 +45,7 @@ extension HomeViewController {
     private func gridCell(section: Section, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GridCollectionCell.cellId, for: indexPath) as! GridCollectionCell
         let group = section as? HomeViewModel.Group<Drink>
-        if let data = group?.groupData[indexPath.row] {
+        if let data = group?.groupData[indexPath.row], section.groupType == .otherEntries {
             cell.viewModel = GridCardViewModel(drink: data)
         }
         if let urlString = cell.viewModel?.thumbURLString, let url = URL(string: urlString) {

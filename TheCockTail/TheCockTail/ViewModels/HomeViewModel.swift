@@ -56,19 +56,19 @@ extension HomeViewModel: HomeViewModelProtocol {
     func fetchData(query: String) {
         service.fetchDrinks(query: query) { [weak self] result  in
             guard let self = self else { return }
-            self.sections.removeAll()
-            self.sections.append(contentsOf: self.defaultSections)
-            switch result {
-                case .success(let data):
-                    
-                    if !data.drinks.isEmpty {
-                        let section = Group<Drink>(groupType: .otherEntries, title: "\(data.drinks.count) Items found", groupData: data.drinks)
-                        self.sections.append(section)
-                    }
-                case .failure(let error):
-                    print(error)
-            }
             DispatchQueue.main.async {
+                self.sections.removeAll()
+                self.sections.append(contentsOf: self.defaultSections)
+                switch result {
+                    case .success(let data):
+                        
+                        if !data.drinks.isEmpty {
+                            let section = Group<Drink>(groupType: .otherEntries, title: "\(data.drinks.count) Items found", groupData: data.drinks)
+                            self.sections.append(section)
+                        }
+                    case .failure(let error):
+                        print(error)
+                }
                 self.reloadable?.reloadData()
             }
         }
