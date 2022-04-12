@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomeViewModelProtocol {
     func fetchData(query: String)
+    func fetchRestaurent()
     var sections: [Section] { get }
     var numberOfSection: Int { get }
     func numberRows(in section: Int) -> Int
@@ -21,7 +22,8 @@ protocol Reloadable: AnyObject {
 }
 
 class HomeViewModel {
-    private let service: DrinkApiService
+    private let service: ServiceProvider
+    private let restaurentService: RestaurentDataProvider
     var sections: [Section] = []
     private weak var reloadable: Reloadable?
     
@@ -31,18 +33,11 @@ class HomeViewModel {
         let groupData: [T]
     }
     
-    init(service: DrinkApiService = DrinkApiService()) {
+    init(service: ServiceProvider = DrinkApiService(),
+         restaurentService: RestaurentDataProvider = RestaurentService()) {
         self.service = service
-        self.sections.append(contentsOf: defaultSections)
+        self.restaurentService = restaurentService
     }
-    
-    lazy var defaultSections: [Section] = {
-        let screenHeader = Group<Void>(groupType: .screenHeader, groupData: [])
-        let defaultEntry = Group<Restaurant>(groupType: .defaultEntry,
-                                             title: "New Restaurant",
-                                             groupData: [Restaurant()])
-        return [screenHeader, defaultEntry]
-    }()
     
     var searchText: String = "" {
         didSet {
@@ -57,8 +52,7 @@ extension HomeViewModel: HomeViewModelProtocol {
         service.fetchDrinks(query: query) { [weak self] result  in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.sections.removeAll()
-                self.sections.append(contentsOf: self.defaultSections)
+                self.sections.removeAll(where: { $0.groupType == .otherEntries })
                 switch result {
                     case .success(let data):
                         
@@ -71,6 +65,20 @@ extension HomeViewModel: HomeViewModelProtocol {
                 }
                 self.reloadable?.reloadData()
             }
+        }
+    }
+    
+    func fetchRestaurent() {
+        self.sections.removeAll()
+        restaurentService.getRestaurentData { [weak self] data in
+            guard let self = self else { return }
+            let screenHeader = Group<Void>(groupType: .screenHeader, groupData: [])
+            let defaultEntry = Group<Restaurant>(groupType: .defaultEntry,
+                                                 title: "New Restaurant",
+                                                 groupData: [data])
+            self.sections.append(screenHeader)
+            self.sections.append(defaultEntry)
+            self.reloadable?.reloadData()
         }
     }
     

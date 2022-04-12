@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         viewModel.bind(with: collectionView)
+        viewModel.fetchRestaurent()
     }
     
     override func viewWillAppear(_ animated: Bool) {

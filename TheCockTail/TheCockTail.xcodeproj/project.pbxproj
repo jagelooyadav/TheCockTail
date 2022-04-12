@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16A6C75B280580490060D9DE /* RestaurentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A6C75A280580490060D9DE /* RestaurentService.swift */; };
+		16A6C75D280580E00060D9DE /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A6C75C280580E00060D9DE /* Restaurant.swift */; };
 		16B388B427C668480066F13C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388B327C668480066F13C /* AppDelegate.swift */; };
 		16B388B627C668480066F13C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388B527C668480066F13C /* SceneDelegate.swift */; };
 		16B388B827C668480066F13C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B388B727C668480066F13C /* HomeViewController.swift */; };
@@ -57,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16A6C75A280580490060D9DE /* RestaurentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurentService.swift; sourceTree = "<group>"; };
+		16A6C75C280580E00060D9DE /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		16B388B027C668480066F13C /* TheCockTail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheCockTail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B388B327C668480066F13C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16B388B527C668480066F13C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				16B388F527C6A8960066F13C /* DrinkApiResponse.swift */,
+				16A6C75C280580E00060D9DE /* Restaurant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				16B388FF27C6E6150066F13C /* ImageURLProtocol.swift */,
 				16B388F927C6B1F10066F13C /* DrinkApiService.swift */,
 				16B388FB27C6BC9F0066F13C /* NetworkManager.swift */,
+				16A6C75A280580490060D9DE /* RestaurentService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16A6C75B280580490060D9DE /* RestaurentService.swift in Sources */,
 				16B388EC27C67B3D0066F13C /* UIView+Extension.swift in Sources */,
 				16B3890F27C75DFF0066F13C /* GridCollectionCell.swift in Sources */,
 				16B388FA27C6B1F10066F13C /* DrinkApiService.swift in Sources */,
@@ -371,6 +378,7 @@
 				16B3890427C6E9280066F13C /* ItemCardCollectionCell.swift in Sources */,
 				16B3890D27C75A0F0066F13C /* SectionHeaderViewModel.swift in Sources */,
 				16B3891527C808B00066F13C /* ItemDetailViewController.swift in Sources */,
+				16A6C75D280580E00060D9DE /* Restaurant.swift in Sources */,
 				16B3890927C6EECD0066F13C /* ItemCardViewModel.swift in Sources */,
 				16B3890727C6EC190066F13C /* UIColor+App.swift in Sources */,
 				16B3890127C6E6150066F13C /* ImageURLProtocol.swift in Sources */,
